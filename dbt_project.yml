@@ -45,5 +45,6 @@ models:
       +schema: silver
     gold:
       +materialized: table
+      gold_nations_summary:  # per-model override
+        +materialized: view
       +schema: gold
-      
