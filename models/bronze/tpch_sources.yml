@@ -17,18 +17,48 @@ sources:
         columns:
           - name: o_orderkey
             description: "Primary key"
+            data_tests:
+              - unique
+              - not_null
           - name: o_custkey
             description: "Foreign key to customer"
+            data_tests:
+              - not_null
+          - name: o_orderstatus
+            description: "Status of the order"
+            data_tests:
+            - accepted_values:
+                arguments:
+                  values: ['O', 'F', 'P']
+
 
       - name: lineitem
         description: "6M line items — one row per part per order"
+        columns: 
+          - name: l_orderkey
+            data_tests:
+              - not_null
+          - name: l_linenumber
+            data_tests:
+              - not_null
         # no config block — dbt skips freshness for this table automatically
 
       - name: customer
         description: "150K customer accounts"
+        columns:
+          - name: c_custkey
+            data_tests:
+                - unique
+                - not_null
+
 
       - name: nation
         description: "25 country reference rows"
+        columns:
+          - name: n_nationkey
+            data_tests:
+                - unique
+                - not_null
 
       - name: supplier
         description: "10K suppliers"
