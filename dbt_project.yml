@@ -40,11 +40,15 @@ models:
     bronze:
       +materialized: view
       +schema: bronze
+      +tags: ['bronze', 'daily']
     silver:
       +materialized: view
       +schema: silver
+      +tags: ['silver', 'daily']
     gold:
       +materialized: table
-      gold_nations_summary:  # per-model override
-        +materialized: view
       +schema: gold
+      +persist_docs:
+        relation: true
+        columns: true
+      +tags: ['gold', 'daily']
