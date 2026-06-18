@@ -59,7 +59,10 @@ models:
         description: "{{ doc('net_revenue') }}"
         data_tests:
           - not_null
-
+      - name: gross_revenue
+        data_tests:
+          - not_null
+      
   - name: gold_market_summary
     columns:
       - name: market_segment

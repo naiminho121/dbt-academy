@@ -33,7 +33,8 @@ SELECT
         WHEN COALESCE(o.total_revenue, 0) > 100000 THEN 'Gold'
         WHEN COALESCE(o.total_revenue, 0) > 0      THEN 'Silver'
         ELSE 'No Orders'
-    END                             AS customer_tier
+    END                             AS customer_tier,
+    {{ revenue_tier('total_revenue', 1000000, 3000000) }} AS revenue_tier
 FROM customers c
 LEFT JOIN nations n ON c.nation_id   = n.nation_id
 LEFT JOIN orders  o ON c.customer_id = o.customer_id
