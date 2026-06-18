@@ -1,0 +1,12 @@
+version: 2
+
+seeds:
+  - name: customers_seed
+    description: "30 customer profiles used for the SCD Type 2 snapshot exercise on Day 4."
+    columns:
+      - name: customer_id
+        description: "Primary key."
+      - name: account_balance
+        description: "Current account balance in USD."
+      - name: updated_at
+        description: "Timestamp of the last profile update. Used by the snapshot strategy to detect changes."

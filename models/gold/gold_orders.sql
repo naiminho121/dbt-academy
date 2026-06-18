@@ -8,6 +8,7 @@
 
 SELECT
     *,
+    {{ date_dimensions('order_date') }},
     gross_revenue - net_revenue                                     AS discount_amount,
     ROUND(
         (gross_revenue - net_revenue) / NULLIF(gross_revenue, 0),
@@ -19,6 +20,7 @@ SELECT
         WHEN total_items >= 3 THEN 'Medium'
         ELSE 'Small'
     END                                                             AS order_size_band,
+    {{ revenue_tier('net_revenue') }} AS revenue_tier,
     CURRENT_TIMESTAMP()                                             AS loaded_at
 FROM {{ ref('silver_orders_enriched') }}
 

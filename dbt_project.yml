@@ -51,4 +51,15 @@ models:
       +persist_docs:
         relation: true
         columns: true
-      +tags: ['gold', 'daily']
+      +tags: ['gold', 'daily'] 
+
+
+seeds:
+  my_new_project:
+    +schema: raw
+    +column_types:
+      customer_id: integer
+      account_balance: float
+    +persist_docs:
+      relation: true
+      columns: true
