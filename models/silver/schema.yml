@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: silver_orders_enriched
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('bronze_tpch_customers')
+                field: customer_id
+      - name: order_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['O', 'F', 'P']
+      - name: market_segment
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['AUTOMOBILE', 'BUILDING', 'FURNITURE', 'MACHINERY', 'HOUSEHOLD']
+      - name: total_items
+        data_tests:
+          - not_null
+      - name: gross_revenue
+        data_tests:
+          - not_null
+      - name: net_revenue
+        data_tests:
+          - not_null

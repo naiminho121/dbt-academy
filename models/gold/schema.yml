@@ -1,0 +1,99 @@
+version: 2
+
+models:
+  - name: gold_customers
+    columns:
+      - name: customer_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer_tier
+        description: "{{ doc('customer_tier') }}"
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Platinum', 'Gold', 'Silver', 'No Orders']
+
+      - name: total_orders
+        data_tests:
+          - not_null
+
+      - name: total_revenue
+        data_tests:
+          - not_null
+
+      - name: avg_order_value
+        data_tests:
+          - not_null
+
+  - name: gold_orders
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: discount_amount
+        data_tests:
+          - not_null
+
+      - name: effective_discount_rate
+        data_tests:
+          - not_null
+
+      - name: revenue_per_item
+        data_tests:
+          - not_null
+
+      - name: order_size_band
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Large', 'Medium', 'Small']
+
+      - name: loaded_at
+        data_tests:
+          - not_null
+      - name: net_revenue
+        description: "{{ doc('net_revenue') }}"
+        data_tests:
+          - not_null
+
+  - name: gold_market_summary
+    columns:
+      - name: market_segment
+        data_tests:
+          - unique
+          - not_null
+
+      - name: total_orders
+        data_tests:
+          - not_null
+
+      - name: total_revenue
+        data_tests:
+          - not_null
+
+      - name: avg_order_value
+        data_tests:
+          - not_null
+
+  - name: gold_nations_summary
+    columns:
+      - name: nation_name
+        data_tests:
+          - unique
+          - not_null
+
+      - name: total_orders
+        data_tests:
+          - not_null
+
+      - name: total_revenue
+        data_tests:
+          - not_null
+
+      - name: avg_order_value
+        data_tests:
+          - not_null
