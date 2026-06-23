@@ -1,0 +1,32 @@
+version: 2
+
+exposures:
+
+  - name: orders_dashboard
+    label: "Orders & Revenue Dashboard"
+    type: dashboard
+    maturity: high
+    url: https://your-bi-tool.com/dashboards/orders
+    description: >
+      Main revenue operations dashboard. Shows daily order volume,
+      revenue by channel, and fulfilment status. Used by Operations
+      and Finance every morning.
+    depends_on:
+      - ref('gold_orders')
+      - ref('gold_customers')
+    owner:
+      name: "Data Team"
+      email: "data@example.com"
+
+  - name: customer_360_report
+    label: "Customer 360 Report"
+    type: analysis
+    maturity: medium
+    description: >
+      Customer lifetime value and segmentation. Feeds the CRM system
+      for marketing automation.
+    depends_on:
+      - ref('gold_customers')
+    owner:
+      name: "Marketing Analytics"
+      email: "marketing-analytics@example.com"
